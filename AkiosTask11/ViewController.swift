@@ -15,11 +15,11 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let selectedPrefecture = UserDefaults.standard.object(forKey: "prefecture") as? String {
-            selectedPrefectureLabel.text = selectedPrefecture
-        } else {
-            selectedPrefectureLabel.text = "未選択"
-        }
+//        if let selectedPrefecture = UserDefaults.standard.object(forKey: "prefecture") as? String {
+//            selectedPrefectureLabel.text = selectedPrefecture
+//        } else {
+//            selectedPrefectureLabel.text = "未選択"
+//        }
     }
     
     override func viewDidLoad() {
@@ -27,7 +27,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func unwindToViewController(_ unwindSegue: UIStoryboardSegue) {}
+    @IBAction func unwindToViewController(_ unwindSegue: UIStoryboardSegue) {
+        if unwindSegue.identifier == "exitFromTableView" {
+            let segueVC = unwindSegue.source as! ChoosePrefectureViewController
+            if let indexPathRow = segueVC.tableView.indexPathForSelectedRow?.row {
+                selectedPrefectureLabel.text = segueVC.prefecture.getPrefectureName(prefectureNum: indexPathRow)
+            }
+        }
+    }
 
 }
 

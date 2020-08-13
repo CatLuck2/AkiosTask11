@@ -21,9 +21,9 @@ struct Prefecture {
 
 class ChoosePrefectureViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
-    private let prefecture = Prefecture()
+    let prefecture = Prefecture()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +44,8 @@ class ChoosePrefectureViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UserDefaults.standard.set(prefecture.getPrefectureName(prefectureNum: indexPath.row), forKey: "prefecture")
-        performSegue(withIdentifier: "exit", sender: nil)
+//        UserDefaults.standard.set(prefecture.getPrefectureName(prefectureNum: indexPath.row), forKey: "prefecture")
+        performSegue(withIdentifier: "exitFromTableView", sender: nil)
     }
 
 }
